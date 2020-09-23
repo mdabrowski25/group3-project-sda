@@ -1,17 +1,17 @@
 package pl.sdacademy;
 
-public class WorldCoronaPeople {
+public class CoronaPeople {
     Integer infected;
     Integer recovered;
     Integer deceased;
 
-    public WorldCoronaPeople(Integer infected, Integer recovered, Integer deceased) {
+    public CoronaPeople(Integer infected, Integer recovered, Integer deceased) {
         this.infected = infected;
         this.recovered = recovered;
         this.deceased = deceased;
     }
 
-    public WorldCoronaPeople() {
+    public CoronaPeople() {
     }
 
     public Integer getRecovered() {
@@ -28,7 +28,7 @@ public class WorldCoronaPeople {
 
     @Override
     public String toString() {
-        return "WorldCoronaPeople{" +
+        return "CoronaPeople{" +
                 "infected=" + infected +
                 ", recovered=" + recovered +
                 ", deceased=" + deceased +
