@@ -1,12 +1,12 @@
 package pl.sdacademy;
 
 public class casualObject {
-    Integer infected;
-    Integer deceased;
+    private Integer infected;
+    private Integer secondInt;
 
-    public casualObject(Integer infected, Integer deceased) {
+    public casualObject(Integer infected, Integer secondInt) {
         this.infected = infected;
-        this.deceased = deceased;
+        this.secondInt = secondInt;
     }
 
     public casualObject() {
@@ -16,23 +16,15 @@ public class casualObject {
         return infected;
     }
 
-    public void setInfected(Integer infected) {
-        this.infected = infected;
-    }
-
-    public Integer getDeceased() {
-        return deceased;
-    }
-
-    public void setDeceased(Integer deceased) {
-        this.deceased = deceased;
+    public Integer getSecondInt() {
+        return secondInt;
     }
 
     @Override
     public String toString() {
         return "casualObject{" +
                 "infected=" + infected +
-                ", deceased=" + deceased +
+                ", secondInt=" + secondInt +
                 '}';
     }
 }
