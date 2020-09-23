@@ -8,20 +8,19 @@ public class User {
     private LocalDate dateOfBirth;
     private boolean admin;
 
-    public User(int id, String firstName, String lastName, LocalDate dateOfBirth, boolean admin) {
-        this.id = id;
+    public User( String firstName, String lastName, LocalDate dateOfBirth, boolean admin) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.admin = admin;
     }
 
-    public int getId() {
-        return id;
+    public User() {
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
