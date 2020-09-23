@@ -30,6 +30,7 @@ public class WorldCoronaPeople {
     public String toString() {
         return "WorldCoronaPeople{" +
                 "infected=" + infected +
+                ", recovered=" + recovered +
                 ", deceased=" + deceased +
                 '}';
     }
