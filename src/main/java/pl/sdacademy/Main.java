@@ -13,10 +13,9 @@ public class Main {
         File file = new File("src/main/resources/jsonExample.json");
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        casualObject casualObject = gson.fromJson(bufferedReader, casualObject.class);
-        System.out.println(casualObject.getInfected());
-        System.out.println(casualObject.getSecondInt());
-        System.out.println();
+        WorldCoronaPeople worldCoronaPeople = gson.fromJson(bufferedReader, WorldCoronaPeople.class);
+        System.out.println(worldCoronaPeople.getInfected());
+        System.out.println(worldCoronaPeople.getDeceased());
 
     }
 }
