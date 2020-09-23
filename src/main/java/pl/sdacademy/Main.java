@@ -15,7 +15,7 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         casualObject casualObject = gson.fromJson(bufferedReader, casualObject.class);
         System.out.println(casualObject.infected);
-        System.out.println(casualObject.secondInt);
+        System.out.println(casualObject.deceased);
 
     }
 }

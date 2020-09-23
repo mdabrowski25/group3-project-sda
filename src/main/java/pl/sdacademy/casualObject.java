@@ -2,11 +2,11 @@ package pl.sdacademy;
 
 public class casualObject {
     Integer infected;
-    Integer secondInt;
+    Integer deceased;
 
-    public casualObject(Integer infected, Integer secondInt) {
+    public casualObject(Integer infected, Integer deceased) {
         this.infected = infected;
-        this.secondInt = secondInt;
+        this.deceased = deceased;
     }
 
     public casualObject() {
@@ -20,19 +20,19 @@ public class casualObject {
         this.infected = infected;
     }
 
-    public Integer getSecondInt() {
-        return secondInt;
+    public Integer getDeceased() {
+        return deceased;
     }
 
-    public void setSecondInt(Integer secondInt) {
-        this.secondInt = secondInt;
+    public void setDeceased(Integer deceased) {
+        this.deceased = deceased;
     }
 
     @Override
     public String toString() {
         return "casualObject{" +
                 "infected=" + infected +
-                ", secondInt=" + secondInt +
+                ", deceased=" + deceased +
                 '}';
     }
 }
