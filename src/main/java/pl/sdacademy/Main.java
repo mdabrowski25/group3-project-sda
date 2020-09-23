@@ -16,6 +16,7 @@ public class Main {
         casualObject casualObject = gson.fromJson(bufferedReader, casualObject.class);
         System.out.println(casualObject.getInfected());
         System.out.println(casualObject.getSecondInt());
+        System.out.println();
 
     }
 }
