@@ -10,7 +10,7 @@ public class Main {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        File file = new File("src/main/resources/jsonExample.json");
+        File file = new File("src/main/resources/simpleJsonExample.json");
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         WorldCoronaPeople worldCoronaPeople = gson.fromJson(bufferedReader, WorldCoronaPeople.class);
