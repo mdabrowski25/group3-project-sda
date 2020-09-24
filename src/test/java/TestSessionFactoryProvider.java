@@ -8,5 +8,7 @@ public class TestSessionFactoryProvider {
     void SessionFactoryTest() {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
+        session.close();
+        sessionFactory.close();
     }
 }
