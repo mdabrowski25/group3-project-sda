@@ -6,6 +6,5 @@ public class Main {
         WorldCoronaPeople worldCoronaPeople = apiDataProvider.get("src/main/resources/jsonWorldExample.json");
         System.out.println(worldCoronaPeople.toString());
         System.out.println(worldCoronaPeople.getResult().getTotal_active_cases());
-
     }
 }
