@@ -6,7 +6,8 @@ import org.hibernate.cfg.Configuration;
 
 public class SessionFactoryProvider {
 public static SessionFactory getSessionFactory(String facetName) {
-    Configuration configuration = new Configuration().configure(facetName);
+    Configuration configuration = new Configuration()
+            .configure(facetName);
     return configuration.buildSessionFactory();
 
 //    private static SessionFactory sessionFactory;

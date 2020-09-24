@@ -1,8 +1,13 @@
 package pl.sdacademy.credentials;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
-
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
     private int id;
     private String firstName, lastName;
     private LocalDate dateOfBirth;
