@@ -59,7 +59,6 @@ public class InMemoryUserRepository implements UserRepository {
         transaction.commit();
         session.close();
         sessionFactory.close();
-
     }
 
     @Override
