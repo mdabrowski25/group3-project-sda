@@ -11,14 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryUserRepository implements UserRepository {
-    private static List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
-    public static void addExampleUsers() {
+    public void addExampleUsers() {
         users.add(new User("Wladek", "Waldkowicz", LocalDate.of(1989, 12, 12), false));
         users.add(new User("Kazek", "Nowak", LocalDate.of(1976, 2, 27), false));
         users.add(new User("Admin", "Adminowicz", LocalDate.of(2000, 1, 1), true));
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
 
     @Override
     public User readById(int id) {
