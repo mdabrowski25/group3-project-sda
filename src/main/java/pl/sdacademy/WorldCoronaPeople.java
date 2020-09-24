@@ -4,16 +4,16 @@ package pl.sdacademy;
 import java.util.Arrays;
 
 public class WorldCoronaPeople {
-  WorldObject[] results = new WorldObject[1];
+  WorldObject[] result = new WorldObject[1];
 
   public WorldObject getResult() {
-    return results[0];
+    return result[0];
   }
 
   @Override
   public String toString() {
     return "WorldCoronaPeople{" +
-            "results=" + Arrays.toString(results) +
+            "result=" + Arrays.toString(result) +
             '}';
   }
 
