@@ -10,6 +10,7 @@ public class WorldCoronaPeople {
     return result[0];
   }
 
+
   @Override
   public String toString() {
     return "WorldCoronaPeople{" +

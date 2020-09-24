@@ -26,6 +26,6 @@ public class ApiDataProvider {
             throw new NullPointerException("Błąd odczytania obiektu z pliku");
     }
     public WorldCoronaPeople get(){
-        return get("data.json");
+        return get("src/main/resources/data.json");
     }
 }
