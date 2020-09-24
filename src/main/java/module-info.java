@@ -3,6 +3,6 @@ module pl.sdacademy {
     requires com.google.gson;
     requires org.hibernate.orm.core;
     requires java.persistence;
-
-    exports pl.sdacademy;
+    requires java.naming;
+    exports pl.sdacademy.JavaFx;
 }
