@@ -27,5 +27,10 @@ public class DateUtils {
         return flag;
     }
 
-
+public long countFarthestDateDifference(List<LocalDate> localDates){
+    List<LocalDate> collect = localDates.stream()
+            .sorted()
+            .collect(Collectors.toList());
+    return countDays(collect.get(0), collect.get(collect.size() - 1));
+}
 }
