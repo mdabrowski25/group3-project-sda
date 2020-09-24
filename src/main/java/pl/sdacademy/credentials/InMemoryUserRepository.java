@@ -7,7 +7,6 @@ import org.hibernate.query.Query;
 import pl.sdacademy.SessionFactoryProvider;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,7 +51,6 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    // nie wydaje mi sie by metoda powinna przyjmowac usera za argument
     public void create(User user) {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
