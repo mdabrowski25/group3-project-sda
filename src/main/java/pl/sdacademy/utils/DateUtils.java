@@ -13,7 +13,7 @@ public class DateUtils {
         return DAYS.between(earlierDate, laterDate);
     }
 
-    public boolean isDatesDifferent(Collection<LocalDate> localDates){
+    public boolean isDatesDifferent(Collection<LocalDate> localDates) {
         List<LocalDate> collect = localDates.stream()
                 .sorted()
                 .collect(Collectors.toList());
@@ -27,10 +27,10 @@ public class DateUtils {
         return flag;
     }
 
-public long countFarthestDateDifference(List<LocalDate> localDates){
-    List<LocalDate> collect = localDates.stream()
-            .sorted()
-            .collect(Collectors.toList());
-    return countDays(collect.get(0), collect.get(collect.size() - 1));
-}
+    public long countFarthestDateDifference(List<LocalDate> localDates) {
+        List<LocalDate> collect = localDates.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        return countDays(collect.get(0), collect.get(collect.size() - 1));
+    }
 }
