@@ -6,5 +6,4 @@ module pl.sdacademy {
     requires java.naming;
     exports pl.sdacademy.JavaFx;
     exports pl.sdacademy;
-
 }
