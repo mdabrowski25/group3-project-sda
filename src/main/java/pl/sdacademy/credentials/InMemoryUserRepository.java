@@ -32,11 +32,10 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    // raczej nie dziala
     public List<User> readAll() {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("SELECT u FROM User u WHERE u.id > 0", User.class);
+        Query<User> query = session.createQuery("SELECT u FROM User u WHERE u.id > 0", User.class);
         List <User> users = query.getResultList();
         session.close();
         sessionFactory.close();
