@@ -5,4 +5,5 @@ module pl.sdacademy {
     requires java.persistence;
     requires java.naming;
     exports pl.sdacademy.JavaFx;
+    exports pl.sdacademy;
 }
