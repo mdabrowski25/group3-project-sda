@@ -2,6 +2,7 @@ package pl.sdacademy.credentials;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import pl.sdacademy.SessionFactoryProvider;
@@ -21,11 +22,17 @@ public class InMemoryUserRepository implements UserRepository {
             new User("Admin", "Adminowicz", LocalDate.of(2000, 1, 1), true));
 
     @Override
-    public User readById() {
-        return null;
+    public User readById(int id) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        sessionFactory.close();
+        return user;
     }
 
     @Override
+    // raczej nie dziala
     public List<User> readAll() {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
@@ -38,17 +45,37 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public void create() {
+    // nie wydaje mi sie by metoda powinna przyjmowac usera za argument
+    public void create(User user) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(user);
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
 
     }
 
     @Override
-    public void update() {
-
+    public void update(User user) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(user);
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
     }
 
     @Override
-    public void delete() {
-
+    public void delete(User user) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(user);
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
     }
 }
