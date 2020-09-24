@@ -43,7 +43,7 @@ public class InMemoryUserRepository implements UserRepository {
     public List<User> readAll() {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
-        Query<User> query = session.createQuery("SELECT u FROM User u WHERE u.id > 0", User.class);
+        Query<User> query = session.createQuery("SELECT u FROM User u", User.class);
         List<User> users = query.getResultList();
         session.close();
         sessionFactory.close();
