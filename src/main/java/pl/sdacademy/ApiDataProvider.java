@@ -9,23 +9,23 @@ public class ApiDataProvider {
     private final GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
     private final Gson gson = builder.create();
 
-    public CoronaPeople get(String jsonPath) {
+    public WorldCoronaPeople get(String jsonPath) {
         File file = new File(jsonPath);
-        CoronaPeople coronaPeople = null;
+        WorldCoronaPeople worldCoronaPeople = null;
 
         try (FileReader fileReader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            coronaPeople = gson.fromJson(bufferedReader, CoronaPeople.class);
+            worldCoronaPeople = gson.fromJson(bufferedReader, WorldCoronaPeople.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (coronaPeople != null)
-            return coronaPeople;
+        if (worldCoronaPeople != null)
+            return worldCoronaPeople;
         else
             throw new NullPointerException("Błąd odczytania obiektu z pliku");
     }
-    public CoronaPeople get(){
+    public WorldCoronaPeople get(){
         return get("data.json");
     }
 }
