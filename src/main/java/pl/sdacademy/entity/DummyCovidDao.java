@@ -8,14 +8,14 @@ public class DummyCovidDao implements CovidDao {
     Country poland = new Country("Poland", "PL", 38_000_000);
     Country germany = new Country("Germany", "DE", 83_000_000);
     Country norway = new Country("Norway", "NO", 5_700_000);
-
+    List<Country> countries = Arrays.asList(
+            poland,
+            germany,
+            norway
+    );
     @Override
     public List<Country> getCountries() {
-        return Arrays.asList(
-                poland,
-                germany,
-                norway
-        );
+        return countries;
     }
 
     @Override
@@ -42,7 +42,17 @@ public class DummyCovidDao implements CovidDao {
 
     @Override
     public List<DayData> getCurrentWorldData() {
-        return null;
+       return Arrays.asList(
+                new DayData(LocalDate.now(),
+                        poland, 2344, 1234, 234,
+                        34566, 443, 4567),
+                new DayData(LocalDate.now(),
+                        germany, 2344, 1234, 234,
+                        34566, 443, 4567),
+                new DayData(LocalDate.now(),
+                        norway, 2344, 1234, 234,
+                        34566, 443, 4567)
+        );
     }
 
     @Override
