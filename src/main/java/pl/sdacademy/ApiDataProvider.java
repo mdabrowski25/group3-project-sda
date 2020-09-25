@@ -2,7 +2,6 @@ package pl.sdacademy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -49,18 +48,14 @@ public class ApiDataProvider {
 
         File file = new File("src/main/resources/data.json");
         FileWriter fileWriter = new FileWriter(file);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        gson.toJson(jsonString, fileWriter);
 
-        gson.toJson(jsonString, bufferedWriter);
-
-        closeAllConnections(urlConnection, fileWriter, bufferedWriter, in, bufferedReader);
+        closeAllConnections(urlConnection, fileWriter, in, bufferedReader);
     }
 
-    private void closeAllConnections(HttpURLConnection urlConnection, FileWriter fileWriter,
-                                     BufferedWriter bufferedWriter, InputStream in, BufferedReader bufferedReader) throws IOException {
+    private void closeAllConnections(HttpURLConnection urlConnection, FileWriter fileWriter, InputStream in, BufferedReader bufferedReader) throws IOException {
         urlConnection.disconnect();
         fileWriter.close();
-        bufferedWriter.close();
         in.close();
         bufferedReader.close();
     }

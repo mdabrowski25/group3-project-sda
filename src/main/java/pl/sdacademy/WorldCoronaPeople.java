@@ -1,6 +1,5 @@
 package pl.sdacademy;
 
-
 import java.util.Arrays;
 
 public class WorldCoronaPeople {
