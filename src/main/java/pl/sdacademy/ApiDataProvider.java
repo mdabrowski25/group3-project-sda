@@ -63,7 +63,7 @@ public class ApiDataProvider {
     private String readAll(BufferedReader reader) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         while (reader.readLine() != null) {
-            stringBuilder.append(reader.readLine());
+            stringBuilder.append(reader.readLine()).append("\n");
         }
         return stringBuilder.toString();
 
