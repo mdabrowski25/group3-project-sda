@@ -26,6 +26,9 @@ public class InMemoryUserRepository implements UserRepository {
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
+        if (user==null){
+            return null;
+        }
         session.close();
         sessionFactory.close();
         return user;
