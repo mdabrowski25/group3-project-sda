@@ -2,11 +2,10 @@ package pl.sdacademy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import com.google.gson.stream.JsonWriter;
+import java.io.FileWriter;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 public class ApiDataProvider {
     private final GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
@@ -40,32 +39,31 @@ public class ApiDataProvider {
     }
 
     private void saveUrlToJsonFile() throws IOException {
-        URL url = new URL("https://api.thevirustracker.com/free-api?global=stats");
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-        String jsonString = readAll(bufferedReader);
-
+        String json = readUrl("https://api.thevirustracker.com/free-api?global=stats");
         File file = new File("src/main/resources/data.json");
         FileWriter fileWriter = new FileWriter(file);
-        gson.toJson(jsonString, fileWriter);
-
-        closeAllConnections(urlConnection, fileWriter, in, bufferedReader);
-    }
-
-    private void closeAllConnections(HttpURLConnection urlConnection, FileWriter fileWriter, InputStream in, BufferedReader bufferedReader) throws IOException {
-        urlConnection.disconnect();
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(json);
+        bufferedWriter.flush();
         fileWriter.close();
-        in.close();
-        bufferedReader.close();
+        bufferedWriter.close();
     }
 
-    private String readAll(BufferedReader reader) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        while (reader.readLine() != null) {
-            stringBuilder.append(reader.readLine()).append("\n");
-        }
-        return stringBuilder.toString();
+    private static String readUrl(String urlString) throws IOException {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
 
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
     }
 }

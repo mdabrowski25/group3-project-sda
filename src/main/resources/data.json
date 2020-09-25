@@ -1,1 +1,19 @@
-"   \"results\":[\n         \"total_cases\":32475057,\n         \"total_unresolved\":5940153,\n         \"total_new_cases_today\":72725,\n         \"total_active_cases\":50407,\n         \"total_affected_countries\":213,\n            \"url\":\"https://thevirustracker.com/\"\n      }\n   \"stat\":\"ok\"\nnull\n"
+{
+   "results":[
+      {
+         "total_cases":32642738,
+         "total_recovered":24074360,
+         "total_unresolved":5940153,
+         "total_deaths":990772,
+         "total_new_cases_today":213527,
+         "total_new_deaths_today":3619,
+         "total_active_cases":155271,
+         "total_serious_cases":6527589,
+         "total_affected_countries":213,
+         "source":{
+            "url":"https://thevirustracker.com/"
+         }
+      }
+   ],
+   "stat":"ok"
+}

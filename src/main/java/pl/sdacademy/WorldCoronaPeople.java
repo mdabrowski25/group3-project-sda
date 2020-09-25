@@ -1,8 +1,9 @@
 package pl.sdacademy;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class WorldCoronaPeople {
+public class WorldCoronaPeople implements Serializable {
   WorldObject[] result = new WorldObject[1];
 
   public WorldObject getResult() {
