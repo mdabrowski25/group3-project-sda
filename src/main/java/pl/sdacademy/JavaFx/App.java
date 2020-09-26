@@ -15,6 +15,7 @@ public class App extends Application {
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
         Scene scene = new Scene(mainUI, 800, 600);
+        mainUI.addButtonAction();
         stage.setScene(scene);
         stage.setTitle("project_covid-19");
         stage.show();

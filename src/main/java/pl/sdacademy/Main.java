@@ -1,7 +1,7 @@
 package pl.sdacademy;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         ApiDataProvider apiDataProvider = new ApiDataProvider();
         WorldCoronaPeople worldCoronaPeople = apiDataProvider.get();
         System.out.println(worldCoronaPeople.toString());

@@ -68,4 +68,19 @@ public class DayData {
     public int getTotal_recovered() {
         return total_recovered;
     }
+
+    @Override
+    public String toString() {
+        return "DayData{" +
+                "id=" + id +
+                ", date=" + date +
+                ", country=" + country +
+                ", total_cases=" + total_cases +
+                ", total_new_cases_today=" + total_new_cases_today +
+                ", total_active_cases=" + total_active_cases +
+                ", total_new_deaths_today=" + total_new_deaths_today +
+                ", total_deaths=" + total_deaths +
+                ", total_recovered=" + total_recovered +
+                '}';
+    }
 }

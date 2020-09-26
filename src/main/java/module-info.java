@@ -7,4 +7,5 @@ module pl.sdacademy {
     opens pl.sdacademy;
     exports pl.sdacademy.JavaFx;
     exports pl.sdacademy;
+    exports pl.sdacademy.entity;
 }
