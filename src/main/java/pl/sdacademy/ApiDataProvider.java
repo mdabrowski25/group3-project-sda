@@ -12,10 +12,9 @@ public class ApiDataProvider {
     private final Gson gson = builder.create();
 
     public WorldCoronaPeople get(String jsonPath) {
-        File file = new File(jsonPath);
         WorldCoronaPeople worldCoronaPeople = null;
 
-        try (FileReader fileReader = new FileReader(file);
+        try (FileReader fileReader = new FileReader(jsonPath);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             worldCoronaPeople = gson.fromJson(bufferedReader, WorldCoronaPeople.class);
         } catch (IOException e) {
