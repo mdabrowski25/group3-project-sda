@@ -11,6 +11,16 @@ public class ApiDataProvider {
     private final GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
     private final Gson gson = builder.create();
 
+    public WorldCoronaPeople get() {
+        try {
+            saveUrlToJsonFile();
+        } catch (IOException e) {
+            System.err.println("Błąd zapisu url do pliku");
+            e.printStackTrace();
+        }
+        return get("src/main/resources/data.json");
+    }
+
     private WorldCoronaPeople get(String jsonPath) {
         WorldCoronaPeople worldCoronaPeople = null;
 
@@ -25,16 +35,6 @@ public class ApiDataProvider {
             return worldCoronaPeople;
         else
             throw new NullPointerException("Błąd odczytania obiektu z pliku");
-    }
-
-    public WorldCoronaPeople get() {
-        try {
-            saveUrlToJsonFile();
-        } catch (IOException e) {
-            System.err.println("Błąd zapisu url do pliku");
-            e.printStackTrace();
-        }
-        return get("src/main/resources/data.json");
     }
 
     private void saveUrlToJsonFile() throws IOException {
@@ -53,7 +53,7 @@ public class ApiDataProvider {
         try {
             URL url = new URL(urlString);
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             int read;
             char[] chars = new char[1024];
             while ((read = reader.read(chars)) != -1)

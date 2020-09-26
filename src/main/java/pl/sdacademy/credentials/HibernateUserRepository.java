@@ -9,13 +9,13 @@ import pl.sdacademy.SessionFactoryProvider;
 import java.util.List;
 
 public class HibernateUserRepository implements UserRepository {
+    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
 
     @Override
     public User readById(int id) {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
-        if (user==null){
+        if (user == null) {
             return null;
         }
         session.close();
@@ -25,7 +25,6 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public List<User> readAll() {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Query<User> query = session.createQuery("SELECT u FROM User u", User.class);
         List<User> users = query.getResultList();
@@ -36,7 +35,6 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public void create(User user) {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
@@ -47,7 +45,6 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public void update(User user) {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.update(user);
@@ -58,7 +55,6 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public void delete(User user) {
-        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(user);
