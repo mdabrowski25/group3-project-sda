@@ -11,7 +11,7 @@ public class ApiDataProvider {
     private final GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
     private final Gson gson = builder.create();
 
-    public WorldCoronaPeople get(String jsonPath) {
+    private WorldCoronaPeople get(String jsonPath) {
         WorldCoronaPeople worldCoronaPeople = null;
 
         try (FileReader fileReader = new FileReader(jsonPath);

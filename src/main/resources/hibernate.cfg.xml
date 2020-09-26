@@ -14,5 +14,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <mapping class="pl.sdacademy.credentials.User"/>
+        <mapping class="pl.sdacademy.entity.Country"/>
+        <mapping class="pl.sdacademy.entity.DayData"/>
     </session-factory>
 </hibernate-configuration>
