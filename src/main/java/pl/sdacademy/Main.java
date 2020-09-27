@@ -3,9 +3,8 @@ package pl.sdacademy;
 public class Main {
     public static void main(String[] args) {
         ApiDataProvider apiDataProvider = new ApiDataProvider();
-        CoronaPeople coronaPeople = apiDataProvider.get("src/main/resources/simpleJsonExample.json");
-        System.out.println(coronaPeople.toString());
-
-
+        WorldCoronaPeople worldCoronaPeople = apiDataProvider.get();
+        System.out.println(worldCoronaPeople.toString());
+        System.out.println(worldCoronaPeople.getResult().getTotal_active_cases());
     }
 }

@@ -3,9 +3,9 @@ package pl.sdacademy.credentials;
 import java.util.List;
 
 public interface UserRepository {
-    User readById();
+    User readById( int id);
     List<User> readAll();
-    void create();
-    void update();
-    void delete();
+    void create(User user);
+    void update(User user);
+    void delete(User user);
 }
