@@ -18,3 +18,5 @@ https://api.covid19api.com/summary
 Spis krajów i skrótów:
 
 https://api.covid19api.com/countries
+
+znajduje sie takze w folderze src/main/resources/countriesChart.json
