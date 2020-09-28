@@ -8,7 +8,7 @@ public class DayData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate date;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     private Country country;
     private int total_cases;
     private int total_new_cases_today;
