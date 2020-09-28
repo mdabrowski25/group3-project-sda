@@ -13,8 +13,8 @@ public class ApiObjectToEntityMapper {
 
         List<CountryCoronaPeople.CovidCountryObject> countries = countryCoronaPeople.getCountries();
         List<Country> result = new ArrayList<>();
-        for (int i = 0; i < countries.size(); i++) {
-            result.add(new Country(countries.get(i).getCountryName(), countries.get(i).getCountryCode()));
+        for (CountryCoronaPeople.CovidCountryObject country : countries) {
+            result.add(new Country(country.getCountryName(), country.getCountryCode()));
         }
         return result;
     }

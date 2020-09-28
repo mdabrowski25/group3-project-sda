@@ -25,8 +25,8 @@ public class Main {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         List<Country> countryList = apiObjectToEntityMapper.map();
-        for (int i = 0; i < countryList.size(); i++) {
-            session.save(countryList.get(i));
+        for (Country country : countryList) {
+            session.save(country);
         }
         transaction.commit();
         session.close();
