@@ -6,9 +6,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.sdacademy.entity.CovidDao;
+import pl.sdacademy.entity.EntityDataProvider;
 
 public class MainUI extends VBox {
-    CovidDao covidDao;
+
+
+    private CovidDao covidDao;
+    private EntityDataProvider entityDataProvider;
+
     TextField textFieldMenu = new TextField("Menu glowne");
     TextField textFieldData = new TextField("Dane zaktualizowano XX.XX.XXXX");
     Button buttonUpdate = new Button("Aktualizuj dane");
@@ -18,6 +23,13 @@ public class MainUI extends VBox {
         this.covidDao = covidDao;
     }
 
+    public CovidDao getCovidDao() {
+        return covidDao;
+    }
+
+    public EntityDataProvider getEntityDataProvider() {
+        return entityDataProvider;
+    }
     public MainUI() {
     }
 
@@ -34,6 +46,7 @@ public class MainUI extends VBox {
 
     public void addButtonAction() {
         buttonUpdate.setOnAction(event -> {
+            covidDao.storeData(entityDataProvider.load());
             VBox vBox1 = new VBox();
             Scene scene2 = new Scene(vBox1, 200, 200);
             Stage stage1 = new Stage();
