@@ -9,18 +9,16 @@ import javax.persistence.Id;
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String shortname;
-    private int population;
 
     public Country() {
     }
 
-    public Country(String name, String shortname, int population) {
+    public Country(String name, String shortname) {
         this.name = name;
         this.shortname = shortname;
-        this.population = population;
     }
 
     public int getId() {
@@ -35,8 +33,12 @@ public class Country {
         return shortname;
     }
 
-    public int getPopulation() {
-        return population;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
     }
 
     @Override
@@ -45,7 +47,6 @@ public class Country {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortname='" + shortname + '\'' +
-                ", population=" + population +
-                '}';
+                ", population=" + '}';
     }
 }
