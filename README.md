@@ -14,3 +14,7 @@ https://api.thevirustracker.com/free-api?global=stats
 Api request dla krajów:
 
 https://api.covid19api.com/summary
+
+Spis krajów i skrótów:
+
+https://api.covid19api.com/countries
