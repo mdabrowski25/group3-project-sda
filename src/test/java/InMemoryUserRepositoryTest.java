@@ -5,7 +5,7 @@ public class InMemoryUserRepositoryTest {
     @Test
     void inMemoryUserRepositoryReadAllTest(){
         InMemoryUserRepository inMemoryUserRepository = new InMemoryUserRepository();
-        inMemoryUserRepository.getUsers().forEach(inMemoryUserRepository::create);
+        inMemoryUserRepository.readAll().forEach(inMemoryUserRepository::create);
         System.out.println(inMemoryUserRepository.readAll());
     }
 }
