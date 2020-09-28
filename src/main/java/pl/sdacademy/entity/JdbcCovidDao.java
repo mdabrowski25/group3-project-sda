@@ -9,27 +9,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcCovidDao implements CovidDao{
-private Connection connection;
+public class JdbcCovidDao implements CovidDao {
+    private Connection connection;
 
-public JdbcCovidDao(Connection connection) {
-    this.connection = connection;
-}
+    public JdbcCovidDao(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public List<Country> getCountries() {
-                try (Statement statement = connection.createStatement()) {
+        try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("" +
                     "SELECT 'name, shortname, population'" +
                     "FROM" +
                     "country");
             List<Country> allCountries = new ArrayList<>();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String shortname = resultSet.getString("shortname");
-                int population = resultSet.getInt("population");
-                allCountries.add(new Country(id, name, shortname, population));
+                allCountries.add(new Country(name, shortname));
             }
             return allCountries;
         } catch (SQLException e) {
@@ -39,7 +37,12 @@ public JdbcCovidDao(Connection connection) {
 
     @Override
     public List<DayData> getDataByCountryAndDateRange(int id, LocalDate from, LocalDate to) {
+//        try (Statement statement = connection.createStatement()) {
+//            statement.executeQuery("SELECT ")
+//        }
+
         return null;
+//    }
     }
 
     @Override
@@ -57,3 +60,5 @@ public JdbcCovidDao(Connection connection) {
 
     }
 }
+
+
