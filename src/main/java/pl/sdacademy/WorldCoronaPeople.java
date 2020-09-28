@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class WorldCoronaPeople implements Serializable {
+public class WorldCoronaPeople extends CoronaPeople implements Serializable {
   @SerializedName("results")
   WorldObject[] result = new WorldObject[1];
 

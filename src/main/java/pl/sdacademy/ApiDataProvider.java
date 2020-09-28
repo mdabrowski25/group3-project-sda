@@ -2,43 +2,38 @@ package pl.sdacademy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonWriter;
 import java.io.FileWriter;
 import java.io.*;
 import java.net.URL;
 
-public class ApiDataProvider {
+public class ApiDataProvider<T extends CoronaPeople> {
     private final GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
     private final Gson gson = builder.create();
 
-    public WorldCoronaPeople get() {
+    public T get(String apiURL, Class<T> clazz) {
         try {
-            saveUrlToJsonFile();
+            saveUrlToJsonFile(apiURL);
         } catch (IOException e) {
             System.err.println("Błąd zapisu url do pliku");
             e.printStackTrace();
         }
-        return get("src/main/resources/data.json");
-    }
+        T coronaPeople = null;
 
-    private WorldCoronaPeople get(String jsonPath) {
-        WorldCoronaPeople worldCoronaPeople = null;
-
-        try (FileReader fileReader = new FileReader(jsonPath);
+        try (FileReader fileReader = new FileReader("src/main/resources/data.json");
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            worldCoronaPeople = gson.fromJson(bufferedReader, WorldCoronaPeople.class);
+            coronaPeople = gson.fromJson(bufferedReader, clazz);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (worldCoronaPeople != null)
-            return worldCoronaPeople;
+        if (coronaPeople != null)
+            return coronaPeople;
         else
             throw new NullPointerException("Błąd odczytania obiektu z pliku");
     }
 
-    private void saveUrlToJsonFile() throws IOException {
-        String json = readUrl("https://api.thevirustracker.com/free-api?global=stats");
+    private void saveUrlToJsonFile(String apiURL) throws IOException {
+        String json = readUrl(apiURL);
         File file = new File("src/main/resources/data.json");
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
