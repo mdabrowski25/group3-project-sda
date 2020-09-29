@@ -3,6 +3,7 @@ package pl.sdacademy.JavaFx;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.sdacademy.entity.DummyCovidDao;
 
 /**
  * JavaFX App
@@ -14,7 +15,8 @@ public class App extends Application {
 
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
-        Scene scene = new Scene(mainUI, 800, 600);
+        ChartUI chartUI = new ChartUI(new DummyCovidDao());
+        Scene scene = new Scene(chartUI, 800, 600);
         mainUI.addButtonAction();
         stage.setScene(scene);
         stage.setTitle("project_covid-19");

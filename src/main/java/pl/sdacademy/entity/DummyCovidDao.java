@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DummyCovidDao implements CovidDao {
     Country poland = new Country("Poland", "PL");
-    Country germany = new Country("Germany", "DE");
+    Country germany = new Country("Germany", "GE");
     Country norway = new Country("Norway", "NO");
     List<Country> countries = Arrays.asList(
             poland,
