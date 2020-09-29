@@ -1,4 +1,4 @@
-package pl.sdacademy;
+package pl.sdacademy.apiCore;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CountryCoronaPeople extends CoronaPeople implements Serializable {
     @SerializedName("Countries")
@@ -13,6 +14,17 @@ public class CountryCoronaPeople extends CoronaPeople implements Serializable {
 
     public List<CovidCountryObject> getCountries() {
         return countries;
+    }
+
+    public CovidCountryObject getOneCountry(String countryShortcut){
+        List<CovidCountryObject> collect = countries.stream()
+                .filter((e1) -> e1.getCountryCode().equals(countryShortcut.toUpperCase()))
+                .collect(Collectors.toList());
+        if (collect.isEmpty()){
+            throw new RuntimeException("Brak obiektu kraju na liscie");
+        } else {
+            return collect.get(0);
+        }
     }
 
     @Override

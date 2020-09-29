@@ -1,7 +1,7 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
-import pl.sdacademy.SessionFactoryProvider;
+import pl.sdacademy.apiCore.SessionFactoryProvider;
 
 public class TestSessionFactoryProvider {
     @Test

@@ -12,8 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import pl.sdacademy.ApiDataProvider;
-import pl.sdacademy.WorldCoronaPeople;
+import pl.sdacademy.apiCore.ApiDataProvider;
+import pl.sdacademy.apiCore.WorldCoronaPeople;
 import pl.sdacademy.entity.Country;
 import pl.sdacademy.entity.CovidDao;
 

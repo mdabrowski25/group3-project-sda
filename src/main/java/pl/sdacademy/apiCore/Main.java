@@ -1,8 +1,9 @@
-package pl.sdacademy;
+package pl.sdacademy.apiCore;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import pl.sdacademy.entity.ApiEntityDataProvider;
 import pl.sdacademy.entity.Country;
 
 import java.util.List;
@@ -20,11 +21,11 @@ public class Main {
 //        CountryCoronaPeople countryCoronaPeople = apiDataProvider2.get("https://api.covid19api.com/summary", CountryCoronaPeople.class);
 //        System.out.println(countryCoronaPeople.getCountries().toString());
 
-        ApiObjectToEntityMapper apiObjectToEntityMapper = new ApiObjectToEntityMapper();
+        ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
         SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<Country> countryList = apiObjectToEntityMapper.map();
+        List<Country> countryList = apiEntityDataProvider.load();
         for (Country country : countryList) {
             session.save(country);
         }

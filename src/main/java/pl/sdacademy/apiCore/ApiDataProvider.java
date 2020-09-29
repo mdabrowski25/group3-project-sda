@@ -1,4 +1,4 @@
-package pl.sdacademy;
+package pl.sdacademy.apiCore;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

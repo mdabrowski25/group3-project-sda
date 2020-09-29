@@ -1,8 +1,3 @@
-import org.junit.jupiter.api.Test;
-import pl.sdacademy.ApiDataProvider;
-import pl.sdacademy.WorldCoronaPeople;
-
-
 public class ApiDataProviderTest {
 
 //    @Test

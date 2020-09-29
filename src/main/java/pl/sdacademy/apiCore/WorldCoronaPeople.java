@@ -1,4 +1,4 @@
-package pl.sdacademy;
+package pl.sdacademy.apiCore;
 
 import com.google.gson.annotations.SerializedName;
 
