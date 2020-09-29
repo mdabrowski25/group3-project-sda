@@ -2,46 +2,68 @@ package pl.sdacademy.JavaFx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pl.sdacademy.ApiDataProvider;
-import pl.sdacademy.ApiObjectToEntityMapper;
-import pl.sdacademy.CountryCoronaPeople;
 import pl.sdacademy.WorldCoronaPeople;
 import pl.sdacademy.entity.Country;
 import pl.sdacademy.entity.CovidDao;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChartUI extends VBox {
 
-    ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
-    WorldCoronaPeople worldCoronaPeople = apiDataProvider.get("https://api.thevirustracker.com/free-api?global=stats", WorldCoronaPeople.class);
-
+    private ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
+    private WorldCoronaPeople worldCoronaPeople = apiDataProvider.get("https://api.thevirustracker.com/free-api?global=stats", WorldCoronaPeople.class);
     private Integer globalTotalConfirmed = worldCoronaPeople.getResult().getTotal_cases();
     private Integer globalTotalDeaths = worldCoronaPeople.getResult().getTotal_deaths();
+
     private CovidDao covidDao;
     private LocalDate dateFrom;
     private LocalDate dateTo;
 
     public ChartUI(CovidDao covidDao) {
         this.covidDao = covidDao;
+
+        HBox listBox = new HBox();
         List<Country> countries = covidDao.getCountries();
-        ObservableList<Country> data = FXCollections.observableList(countries);
+        List<String> countriesShortName = countries.stream().map(Country::getShortname).collect(Collectors.toList());
+        ObservableList<String> data = FXCollections.observableList(countriesShortName);
+
         DatePicker datePickerFrom = new DatePicker();
         DatePicker datePickerTo = new DatePicker();
+
         Button buttonShow = new Button("Pokaz wykres");
+
+
+        ObservableList<XYChart.Data> aList = FXCollections.observableArrayList(
+                new XYChart.Data(0, 0),
+                new XYChart.Data<>(globalTotalDeaths, globalTotalConfirmed)
+
+        );
+        Axis xAxis = new NumberAxis();
+        Axis yAxis = new NumberAxis();
+        LineChart chart = new LineChart(xAxis, yAxis);
+
         this.getChildren().add(new Label("Wykres"));
         this.getChildren().add(new Label("Aktualnie zarazonych na swiecie"));
         this.getChildren().add(new Label(globalTotalConfirmed.toString()));
         this.getChildren().add(new Label("Laczna liczba zgonow na swiecie"));
         this.getChildren().add(new Label(globalTotalDeaths.toString()));
         this.getChildren().add(new Label("Wybierz kraj:"));
-        this.getChildren().add(new ListView<Country>(data));
+        listBox.getChildren().add(new ListView<String>(data));
+        listBox.setPrefHeight(200.0);
+        this.getChildren().add(listBox);
         this.getChildren().add(new Label("Wybierz zakres dat"));
         this.getChildren().add(datePickerFrom);
         this.getChildren().add(datePickerTo);
@@ -50,6 +72,7 @@ public class ChartUI extends VBox {
             dateTo = datePickerFrom.getValue();
         });
         this.getChildren().add(buttonShow);
+        this.getChildren().add(chart);
     }
 
 }

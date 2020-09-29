@@ -4,6 +4,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.sdacademy.entity.DummyCovidDao;
+import pl.sdacademy.entity.JdbcCovidDao;
+import com.mysql.cj.jdbc.MysqlDataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * JavaFX App
@@ -11,7 +16,7 @@ import pl.sdacademy.entity.DummyCovidDao;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws SQLException {
 
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();

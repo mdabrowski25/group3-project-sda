@@ -8,6 +8,7 @@ module pl.sdacademy {
     requires com.fasterxml.classmate;
     requires java.xml.bind;
     requires com.sun.xml.bind;
+    requires mysql.connector.java;
     opens pl.sdacademy.entity;
     opens pl.sdacademy.credentials;
     opens pl.sdacademy;
