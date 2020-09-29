@@ -14,11 +14,14 @@ public class ApiObjectToEntityMapper {
                 apiDataProvider2.get("https://api.covid19api.com/summary", CountryCoronaPeople.class);
 
         List<CountryCoronaPeople.CovidCountryObject> countries = countryCoronaPeople.getCountries();
-        List<Country> result = new ArrayList<>();
-        for (CountryCoronaPeople.CovidCountryObject country : countries) {
-            result.add(new Country(country.getCountryName(), country.getCountryCode()));
-        }
 
-        return result;
+        //       List<Country> result = new ArrayList<>();
+//        for (CountryCoronaPeople.CovidCountryObject country : countries) {
+//            result.add(new Country(country.getCountryName(), country.getCountryCode()));
+//        }
+
+        return countries.stream()
+                .map(covidCountryObject -> new Country(covidCountryObject.getCountryName(), covidCountryObject.getCountryCode()))
+                .collect(Collectors.toList());
     }
 }
