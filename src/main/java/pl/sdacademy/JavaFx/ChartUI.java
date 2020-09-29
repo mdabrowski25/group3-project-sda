@@ -46,9 +46,9 @@ public class ChartUI extends VBox {
         Button buttonShow = new Button("Pokaz wykres");
 
 
-        ObservableList<XYChart.Data> aList = FXCollections.observableArrayList(
+        ObservableList<XYChart.Data> dataList = FXCollections.observableArrayList(
                 new XYChart.Data(0, 0),
-                new XYChart.Data<>(globalTotalDeaths, globalTotalConfirmed)
+                new XYChart.Data<>(50, 50)
 
         );
         Axis xAxis = new NumberAxis();

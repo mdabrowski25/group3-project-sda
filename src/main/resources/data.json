@@ -1,18 +1,14 @@
-<br />
-<b>Warning</b>:  session_start(): open(/var/cpanel/php/sessions/ea-php72/sess_ae47308c2c18deb8f37f0d558ae629f8, O_RDWR) failed: No space left on device (28) in <b>/home/thevirustracker/api.thevirustracker.com/connections.php</b> on line <b>1</b><br />
-<br />
-<b>Warning</b>:  session_start(): Failed to read session data: files (path: /var/cpanel/php/sessions/ea-php72) in <b>/home/thevirustracker/api.thevirustracker.com/connections.php</b> on line <b>1</b><br />
 {
    "results":[
       {
-         "total_cases":33737095,
-         "total_recovered":25029726,
+         "total_cases":33738814,
+         "total_recovered":25030044,
          "total_unresolved":5940153,
-         "total_deaths":1009558,
-         "total_new_cases_today":191762,
-         "total_new_deaths_today":3420,
-         "total_active_cases":156625,
-         "total_serious_cases":6598938,
+         "total_deaths":1009595,
+         "total_new_cases_today":193481,
+         "total_new_deaths_today":3457,
+         "total_active_cases":156943,
+         "total_serious_cases":6600302,
          "total_affected_countries":213,
          "source":{
             "url":"https://thevirustracker.com/"

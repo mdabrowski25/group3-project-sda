@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws SQLException {
+    public void start(Stage stage) throws Exception{
 
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
