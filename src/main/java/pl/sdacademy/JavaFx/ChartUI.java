@@ -7,6 +7,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import pl.sdacademy.ApiDataProvider;
+import pl.sdacademy.ApiObjectToEntityMapper;
+import pl.sdacademy.CountryCoronaPeople;
+import pl.sdacademy.WorldCoronaPeople;
 import pl.sdacademy.entity.Country;
 import pl.sdacademy.entity.CovidDao;
 
@@ -15,8 +19,11 @@ import java.util.List;
 
 public class ChartUI extends VBox {
 
-    private Integer globalTotalConfirmed = 1;
-    private Integer globalTotalDeaths = 1;
+    ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
+    WorldCoronaPeople worldCoronaPeople = apiDataProvider.get("https://api.thevirustracker.com/free-api?global=stats", WorldCoronaPeople.class);
+
+    private Integer globalTotalConfirmed = worldCoronaPeople.getResult().getTotal_cases();
+    private Integer globalTotalDeaths = worldCoronaPeople.getResult().getTotal_deaths();
     private CovidDao covidDao;
     private LocalDate dateFrom;
     private LocalDate dateTo;
@@ -33,7 +40,7 @@ public class ChartUI extends VBox {
         this.getChildren().add(new Label(globalTotalConfirmed.toString()));
         this.getChildren().add(new Label("Laczna liczba zgonow na swiecie"));
         this.getChildren().add(new Label(globalTotalDeaths.toString()));
-        this.getChildren().add(new Label("Kraje:"));
+        this.getChildren().add(new Label("Wybierz kraj:"));
         this.getChildren().add(new ListView<Country>(data));
         this.getChildren().add(new Label("Wybierz zakres dat"));
         this.getChildren().add(datePickerFrom);
@@ -44,4 +51,5 @@ public class ChartUI extends VBox {
         });
         this.getChildren().add(buttonShow);
     }
+
 }

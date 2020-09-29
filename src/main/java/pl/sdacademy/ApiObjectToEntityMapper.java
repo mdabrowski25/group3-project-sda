@@ -19,8 +19,6 @@ public class ApiObjectToEntityMapper {
             result.add(new Country(country.getCountryName(), country.getCountryCode()));
         }
 
-        //drugie rozwiazanie
-        List<Country> result2 = Collections.singletonList((Country) List.copyOf(countries));
         return result;
     }
 }
