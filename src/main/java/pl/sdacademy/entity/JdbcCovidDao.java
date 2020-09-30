@@ -2,6 +2,7 @@ package pl.sdacademy.entity;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import pl.sdacademy.apiCore.SessionFactoryProvider;
 
@@ -30,8 +31,6 @@ public class JdbcCovidDao implements CovidDao {
     }
 
 
-
-
     @Override
     public List<DayData> getDataByCountryAndDateRange(int idOfSearchedCountry, LocalDate from, LocalDate to) {
         Session session = sessionFactory.openSession();
@@ -47,7 +46,7 @@ public class JdbcCovidDao implements CovidDao {
     public DayData getCurrentDataByCountry(int idOfSearchedCountry) {
         Session session = sessionFactory.openSession();
         Query<DayData> query = session.createQuery("SELECT a FROM DayData a WHERE a.country.id" +
-                idOfSearchedCountry, DayData.class);
+                idOfSearchedCountry + "date is " + LocalDate.now(), DayData.class);
         sessionFactory.close();
         session.close();
         return query.getSingleResult();
@@ -56,7 +55,7 @@ public class JdbcCovidDao implements CovidDao {
     @Override
     public List<DayData> getCurrentWorldData() {
         Session session = sessionFactory.openSession();
-        Query<DayData> query = session.createQuery("SELECT a FROM daydata a WHERE date is " +
+        Query<DayData> query = session.createQuery("SELECT a FROM DayData a WHERE date is " +
                 LocalDate.now(), DayData.class);
         sessionFactory.close();
         session.close();
@@ -65,6 +64,14 @@ public class JdbcCovidDao implements CovidDao {
 
     @Override
     public void storeData(List<Country> countries) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.createQuery("DELETE FROM DayData")
+                .executeUpdate();
+        transaction.commit();
+
+        session.close();
+
 
     }
 }
