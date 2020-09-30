@@ -15,7 +15,7 @@ import static org.hibernate.hql.internal.antlr.HqlTokenTypes.FROM;
 
 public class JdbcCovidDao implements CovidDao {
     private Connection connection;
-//    private Country country;
+    //    private Country country;
     private final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
 
     public JdbcCovidDao(Connection connection) {
@@ -70,7 +70,8 @@ public class JdbcCovidDao implements CovidDao {
         session.createQuery("DELETE FROM DayData")
                 .executeUpdate();
         countries.stream()
-                .map(country -> getCurrentDataByCountry(country.getId()));
+                .map(country -> getCurrentDataByCountry(country.getId()))
+                .collect(Collectors.toList());
         transaction.commit();
         session.close();
     }
