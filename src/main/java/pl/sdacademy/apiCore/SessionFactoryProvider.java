@@ -9,7 +9,6 @@ public static SessionFactory getSessionFactory(String facetName) {
     Configuration configuration = new Configuration()
             .configure(facetName);
     return configuration.buildSessionFactory();
-
 }
 
 }
