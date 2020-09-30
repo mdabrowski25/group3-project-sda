@@ -16,8 +16,7 @@ import java.sql.SQLException;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception{
-
+    public void start(Stage stage){
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
         ChartUI chartUI = new ChartUI(new DbCovidDao());
@@ -36,8 +35,8 @@ public class App extends Application {
         try {
             dataSource.setServerTimezone("UTC");
             return dataSource.getConnection();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
       return null;
     }

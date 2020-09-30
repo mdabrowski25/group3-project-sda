@@ -16,19 +16,18 @@ import pl.sdacademy.apiCore.ApiDataProvider;
 import pl.sdacademy.apiCore.WorldCoronaPeople;
 import pl.sdacademy.entity.Country;
 import pl.sdacademy.entity.CovidDao;
+import pl.sdacademy.entity.DbCovidDao;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ChartUI extends VBox {
-
-    private ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
-    private WorldCoronaPeople worldCoronaPeople = apiDataProvider.get("https://api.thevirustracker.com/free-api?global=stats", WorldCoronaPeople.class);
-    private Integer globalTotalConfirmed = worldCoronaPeople.getResult().getTotal_cases();
-    private Integer globalTotalDeaths = worldCoronaPeople.getResult().getTotal_deaths();
-
+    private DbCovidDao dbCovidDao = new DbCovidDao();
     private CovidDao covidDao;
+    private Integer globalTotalConfirmed = dbCovidDao.getCurrentWorldData().getTotal_cases();
+    private Integer globalTotalDeaths = dbCovidDao.getCurrentWorldData().getTotal_deaths();
+
     private LocalDate dateFrom;
     private LocalDate dateTo;
 
@@ -36,7 +35,7 @@ public class ChartUI extends VBox {
         this.covidDao = covidDao;
 
         HBox listBox = new HBox();
-        List<Country> countries = covidDao.getCountries();
+        List<Country> countries = dbCovidDao.getCountries();
         List<String> countriesShortName = countries.stream().map(Country::getShortname).collect(Collectors.toList());
         ObservableList<String> data = FXCollections.observableList(countriesShortName);
 

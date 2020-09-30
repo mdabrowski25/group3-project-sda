@@ -11,6 +11,7 @@ public class DbCovidDao implements CovidDao {
     ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
     ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
 
+
     @Override
     public List<Country> getCountries() {
         return apiEntityDataProvider.load();

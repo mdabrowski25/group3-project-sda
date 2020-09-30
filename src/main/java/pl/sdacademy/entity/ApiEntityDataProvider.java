@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ApiEntityDataProvider implements EntityDataProvider {
-    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
     ApiDataProvider<CountryCoronaPeople> apiDataProvider = new ApiDataProvider<>();
     ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
     @Override
@@ -29,7 +28,6 @@ public class ApiEntityDataProvider implements EntityDataProvider {
         List<Country> collect = countries.stream()
                 .filter((e1) -> e1.getShortname().equals(countryShortcut))
                 .collect(Collectors.toList());
-        dayData.setDate(LocalDate.now());
         dayData.setCountry(collect.get(0));
         dayData.setTotal_cases(oneCountry.getTotalConfirmed());
         dayData.setTotal_new_cases_today(oneCountry.getNewConfirmed());
@@ -37,11 +35,11 @@ public class ApiEntityDataProvider implements EntityDataProvider {
         dayData.setTotal_deaths(oneCountry.getTotalDeaths());
         dayData.setTotal_recovered(oneCountry.getTotalRecovered());
         dayData.setNew_recovered(oneCountry.getNewRecovered());
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(dayData);
-        transaction.commit();
-        session.close();
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//        session.save(dayData);
+//        transaction.commit();
+//        session.close();
         return dayData;
     }
 
