@@ -20,9 +20,9 @@ public class DayData {
     public DayData() {
     }
 
-    public DayData(LocalDate date, Country country, int total_cases,
-                   int total_new_cases_today, int total_new_deaths_today,
-                   int total_deaths, int total_recovered, Integer new_recovered) {
+    public DayData(LocalDate date, Country country, Integer total_cases,
+                   Integer total_new_cases_today, Integer total_new_deaths_today,
+                   Integer total_deaths, Integer total_recovered, Integer new_recovered) {
         this.date = date;
         this.country = country;
         this.total_cases = total_cases;
@@ -45,23 +45,23 @@ public class DayData {
         return country;
     }
 
-    public int getTotal_cases() {
+    public Integer getTotal_cases() {
         return total_cases;
     }
 
-    public int getTotal_new_cases_today() {
+    public Integer getTotal_new_cases_today() {
         return total_new_cases_today;
     }
 
-    public int getTotal_new_deaths_today() {
+    public Integer getTotal_new_deaths_today() {
         return total_new_deaths_today;
     }
 
-    public int getTotal_deaths() {
+    public Integer getTotal_deaths() {
         return total_deaths;
     }
 
-    public int getTotal_recovered() {
+    public Integer getTotal_recovered() {
         return total_recovered;
     }
 
