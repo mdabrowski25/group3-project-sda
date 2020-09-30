@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ApiEntityDataProvider implements EntityDataProvider {
-    ApiDataProvider<CountryCoronaPeople> apiDataProvider = new ApiDataProvider<>();
-    ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
+  ApiDataProvider<CountryCoronaPeople> apiDataProvider = new ApiDataProvider<>();
+//    ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
     @Override
     public List<Country> load() {
         return ApiObjectToEntityMapper.map();
@@ -24,7 +24,7 @@ public class ApiEntityDataProvider implements EntityDataProvider {
                 apiDataProvider.get("https://api.covid19api.com/summary", CountryCoronaPeople.class);
         DayData dayData = new DayData();
         CountryCoronaPeople.CovidCountryObject oneCountry = countryCoronaPeople.getOneCountry(countryShortcut);
-        List<Country> countries = apiEntityDataProvider.load();
+        List<Country> countries = this.load();
         List<Country> collect = countries.stream()
                 .filter((e1) -> e1.getShortname().equals(countryShortcut))
                 .collect(Collectors.toList());
