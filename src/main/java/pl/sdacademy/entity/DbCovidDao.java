@@ -1,16 +1,13 @@
 package pl.sdacademy.entity;
 
 
-import org.hibernate.SessionFactory;
 import pl.sdacademy.apiCore.ApiDataProvider;
-import pl.sdacademy.apiCore.SessionFactoryProvider;
 import pl.sdacademy.apiCore.WorldCoronaPeople;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class DbCovidDao implements CovidDao {
-    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
     ApiEntityDataProvider apiEntityDataProvider = new ApiEntityDataProvider();
     ApiDataProvider<WorldCoronaPeople> apiDataProvider = new ApiDataProvider<>();
 
