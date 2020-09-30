@@ -19,7 +19,7 @@ public class App extends Application {
     public void start(Stage stage){
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
-        ChartUI chartUI = new ChartUI(new JdbcCovidDao(getConnectionToProject_Covid()));
+        ChartUI chartUI = new ChartUI();
         Scene scene = new Scene(chartUI, 800, 600);
         mainUI.addButtonAction();
         stage.setScene(scene);

@@ -31,13 +31,13 @@ public class ChartUI extends VBox {
     private LocalDate dateFrom;
     private LocalDate dateTo;
 
-    public ChartUI(CovidDao covidDao) {
+    public ChartUI() {
         this.covidDao = covidDao;
 
         HBox listBox = new HBox();
         List<Country> countries = dbCovidDao.getCountries();
-        List<String> countriesShortName = countries.stream().map(Country::getShortname).collect(Collectors.toList());
-        ObservableList<String> data = FXCollections.observableList(countriesShortName);
+        List<String> countriesName = countries.stream().map(Country::getName).collect(Collectors.toList());
+        ObservableList<String> data = FXCollections.observableList(countriesName);
 
         DatePicker datePickerFrom = new DatePicker();
         DatePicker datePickerTo = new DatePicker();
