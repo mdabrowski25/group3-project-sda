@@ -1,14 +1,14 @@
 {
    "results":[
       {
-         "total_cases":33985952,
-         "total_recovered":25250436,
+         "total_cases":34023056,
+         "total_recovered":25270378,
          "total_unresolved":5940153,
-         "total_deaths":1014924,
-         "total_new_cases_today":152048,
-         "total_new_deaths_today":2915,
-         "total_active_cases":110921,
-         "total_serious_cases":6601304,
+         "total_deaths":1015423,
+         "total_new_cases_today":189152,
+         "total_new_deaths_today":3414,
+         "total_active_cases":130863,
+         "total_serious_cases":6607128,
          "total_affected_countries":213,
          "source":{
             "url":"https://thevirustracker.com/"
