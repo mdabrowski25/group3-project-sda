@@ -9,10 +9,11 @@ import pl.sdacademy.apiCore.SessionFactoryProvider;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JdbcCovidDao implements CovidDao {
     private Connection connection;
-    private Country country;
+    //    private Country country;
     private final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
 
     public JdbcCovidDao(Connection connection) {
@@ -73,11 +74,11 @@ public class JdbcCovidDao implements CovidDao {
         Transaction transaction = session.beginTransaction();
         session.createQuery("DELETE FROM DayData")
                 .executeUpdate();
+        countries.stream()
+                .map(country -> getCurrentDataByCountry(country.getId()))
+                .collect(Collectors.toList());
         transaction.commit();
-
         session.close();
-
-
     }
 }
 

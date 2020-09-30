@@ -13,6 +13,7 @@ module pl.sdacademy {
     opens pl.sdacademy.credentials;
     opens pl.sdacademy.apiCore;
     exports pl.sdacademy.JavaFx;
+    exports pl.sdacademy.JavaFx.ChartExample;
     exports pl.sdacademy.entity;
     exports pl.sdacademy.apiCore;
 }
