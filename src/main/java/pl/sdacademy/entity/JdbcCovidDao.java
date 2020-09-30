@@ -22,6 +22,7 @@ public class JdbcCovidDao implements CovidDao {
 
     @Override
     public List<Country> getCountries() {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
         Session session = sessionFactory.openSession();
         Query<Country> query = session.createQuery("SELECT a FROM Country a ORDER by a.name", Country.class);
         sessionFactory.close();
