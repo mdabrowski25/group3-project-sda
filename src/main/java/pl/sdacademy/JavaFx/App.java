@@ -3,6 +3,7 @@ package pl.sdacademy.JavaFx;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.sdacademy.entity.DbCovidDao;
 import pl.sdacademy.entity.JdbcCovidDao;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -19,7 +20,7 @@ public class App extends Application {
 
         MainUI mainUI = new MainUI();
         mainUI.makeVbox();
-        ChartUI chartUI = new ChartUI(new JdbcCovidDao(getConnectionToProject_Covid()));
+        ChartUI chartUI = new ChartUI(new DbCovidDao());
         Scene scene = new Scene(chartUI, 800, 600);
         mainUI.addButtonAction();
         stage.setScene(scene);
