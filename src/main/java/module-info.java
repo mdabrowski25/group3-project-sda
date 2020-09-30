@@ -11,8 +11,8 @@ module pl.sdacademy {
     requires mysql.connector.java;
     opens pl.sdacademy.entity;
     opens pl.sdacademy.credentials;
-    opens pl.sdacademy;
+    opens pl.sdacademy.apiCore;
     exports pl.sdacademy.JavaFx;
-    exports pl.sdacademy;
     exports pl.sdacademy.entity;
+    exports pl.sdacademy.apiCore;
 }
