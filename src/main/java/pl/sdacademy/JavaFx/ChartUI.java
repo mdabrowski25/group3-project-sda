@@ -51,9 +51,12 @@ public class ChartUI extends VBox {
                 new XYChart.Data<>(50, 50)
 
         );
+        ObservableList<XYChart.Series> seriesList = FXCollections.observableArrayList();
+        seriesList.add(new XYChart.Series("Example", dataList));
+
         Axis xAxis = new NumberAxis();
         Axis yAxis = new NumberAxis();
-        LineChart chart = new LineChart(xAxis, yAxis);
+        LineChart chart = new LineChart(xAxis, yAxis, seriesList);
 
         this.getChildren().add(new Label("Wykres"));
         this.getChildren().add(new Label("Aktualnie zarazonych na swiecie"));
