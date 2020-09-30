@@ -19,7 +19,12 @@ public class DummyCovidDao implements CovidDao {
     }
 
     @Override
-    public List<DayData> getDataByCountryAndDateRange(int id, LocalDate from, LocalDate to) {
+    public DayData getAndSaveCurrentDataByCountry(String countryShortcut) {
+        return null;
+    }
+
+
+    public List<DayData> getDataByCountry(int id) {
         return Arrays.asList(
                 new DayData(LocalDate.now(),
                         poland, 2344, 1234, 234,
@@ -33,7 +38,6 @@ public class DummyCovidDao implements CovidDao {
         );
     }
 
-    @Override
     public DayData getCurrentDataByCountry(int id) {
         return
                 new DayData(LocalDate.now(), germany, 2344, 1234, 234,
@@ -41,18 +45,10 @@ public class DummyCovidDao implements CovidDao {
     }
 
     @Override
-    public List<DayData> getCurrentWorldData() {
-       return Arrays.asList(
-                new DayData(LocalDate.now(),
+    public DayData getCurrentWorldData() {
+       return new DayData(LocalDate.now(),
                         poland, 2344, 1234, 234,
-                        34566, 443, 4567),
-                new DayData(LocalDate.now(),
-                        germany, 2344, 1234, 234,
-                        34566, 443, 4567),
-                new DayData(LocalDate.now(),
-                        norway, 2344, 1234, 234,
-                        34566, 443, 4567)
-        );
+                        34566, 443, 4567);
     }
 
     @Override

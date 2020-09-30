@@ -69,6 +69,38 @@ public class DayData {
         return new_recovered;
     }
 
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public void setTotal_cases(Integer total_cases) {
+        this.total_cases = total_cases;
+    }
+
+    public void setTotal_new_cases_today(Integer total_new_cases_today) {
+        this.total_new_cases_today = total_new_cases_today;
+    }
+
+    public void setTotal_new_deaths_today(Integer total_new_deaths_today) {
+        this.total_new_deaths_today = total_new_deaths_today;
+    }
+
+    public void setTotal_deaths(Integer total_deaths) {
+        this.total_deaths = total_deaths;
+    }
+
+    public void setTotal_recovered(Integer total_recovered) {
+        this.total_recovered = total_recovered;
+    }
+
+    public void setNew_recovered(Integer new_recovered) {
+        this.new_recovered = new_recovered;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "DayData{" +
