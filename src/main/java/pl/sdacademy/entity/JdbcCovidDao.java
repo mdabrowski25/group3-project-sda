@@ -1,16 +1,18 @@
 package pl.sdacademy.entity;
 
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import pl.sdacademy.apiCore.SessionFactoryProvider;
+
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcCovidDao implements CovidDao {
     private Connection connection;
+    private Country country;
+
 
     public JdbcCovidDao(Connection connection) {
         this.connection = connection;
@@ -18,41 +20,43 @@ public class JdbcCovidDao implements CovidDao {
 
     @Override
     public List<Country> getCountries() {
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("" +
-                    "SELECT 'name, shortname, population'" +
-                    "FROM" +
-                    "country");
-            List<Country> allCountries = new ArrayList<>();
-            while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String shortname = resultSet.getString("shortname");
-                allCountries.add(new Country(name, shortname));
-            }
-            return allCountries;
-        } catch (SQLException e) {
-            throw new RuntimeException("Błąd", e);
-        }
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Query<Country> query = session.createQuery("SELECT FROM country", Country.class);
+        List<Country> allCountries = query.getResultList();
+        return allCountries;
+    }
+
+
+    @Override
+    public List<DayData> getDataByCountryAndDateRange(int idOfSearchedCountry, LocalDate from, LocalDate to) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Query<DayData> query = session.createQuery("SELECT FROM daydata WHERE " +
+                "country_id = " + idOfSearchedCountry + " AND date is between ( " + from +
+                ", " + to + " )", DayData.class);
+        List<DayData> dataByCountryAndDateRange = query.getResultList();
+        return dataByCountryAndDateRange;
     }
 
     @Override
-    public List<DayData> getDataByCountryAndDateRange(int id, LocalDate from, LocalDate to) {
-//        try (Statement statement = connection.createStatement()) {
-//            statement.executeQuery("SELECT ")
-//        }
-
-        return null;
-//    }
-    }
-
-    @Override
-    public DayData getCurrentDataByCountry(int id) {
-        return null;
+    public DayData getCurrentDataByCountry(int idOfSearchedCountry) {
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Query<DayData> query = session.createQuery("SELECT * FROM daydata WHERE country.id = " +
+                idOfSearchedCountry, DayData.class);
+        DayData currentDataByCountry = query.getSingleResult();
+        return currentDataByCountry;
     }
 
     @Override
     public List<DayData> getCurrentWorldData() {
-        return null;
+        SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory("hibernate.cfg.xml");
+        Session session = sessionFactory.openSession();
+        Query<DayData> query = session.createQuery("SELECT * FROM daydata WHERE date is " +
+                LocalDate.now(), DayData.class);
+        List<DayData> currentWorldData = query.getResultList();
+        return currentWorldData;
     }
 
     @Override
